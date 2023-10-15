@@ -86,8 +86,8 @@ How many observations are there in the data set?
 ```{r pivoting}
 ## Uncomment and complete the following code
 
-#staff_long <- ___ %>%
-#  ___(
+#staff_long <- staff %>%
+#  pivot_longer(
 #    cols = ____, 
 #    names_to = "_____",
 #    values_to = "percent"

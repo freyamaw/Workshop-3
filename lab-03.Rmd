@@ -86,12 +86,13 @@ How many observations are there in the data set?
 ```{r pivoting}
 ## Uncomment and complete the following code
 
-#staff_long <- staff %>%
-#  pivot_longer(
-#    cols = ____, 
-#    names_to = "_____",
-#    values_to = "percent"
-#    )
+staff_long <- staff %>%
+  pivot_longer(
+    cols = 2:12, 
+    names_to = "year",
+    values_to = "percent"
+    ) %>%
+  view()
 
 ```
 
@@ -100,6 +101,9 @@ How many observations are there in the data set?
 
 ```{r dot-plot}
 # Write your code for Exercise 3 here
+ggplot(data = staff_long,
+       mapping = aes(x = year, y = percent)) +
+  geom_line()
 
 
 
@@ -119,15 +123,20 @@ How many observations are there in the data set?
 ```{r mutate-year}
 ## Uncomment and complete the following code
 
-#staff_long <- staff_long %>%
-#  mutate(year = ______(year))
+staff_long <- staff_long %>%
+  mutate(year = as.numeric(year))
 ```
 
 
 ```{r working-line-plot}
 # Write your code for Exercise 5 here
 
+ggplot(data = staff_long,
+       mapping = aes(x = year, y = percent, colour = faculty_type, group = faculty_type)) +
+  geom_point() +
+  geom_smooth()
 
+  
 
 ```
 
@@ -136,6 +145,11 @@ How many observations are there in the data set?
 ```{r better-line-plot}
 # Write your code for Exercise 6 here
 
+ggplot(data = staff_long,
+       mapping = aes(x = year, y = percent, colour = faculty_type, group = faculty_type)) +
+  geom_point() +
+  geom_smooth() +
+  labs(x = "Year", y = "Percentage", title = "Plot for percentage per year")
 
 
 
